@@ -1,0 +1,57 @@
+<div class="parent">
+  <p></p>
+  <h1>Bienvenido Registro de PQR</h1>
+
+  <form class="form" [formGroup]="pqrFormGruop" (ngSubmit)="onSubmit()">
+    <mat-form-field *ngIf="opcionIn == -1">
+      <mat-label>Tipo de PQR</mat-label>
+      <mat-select formControlName="pqrForm" [(value)]="opcion">
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let option of options" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div *ngIf="opcionIn != -1">
+      <p>
+        <mat-card class="full-width" appearance="fill">
+          <mat-label>{{opcion}}</mat-label>
+        </mat-card>
+      </p>
+    </div>
+
+    <p>
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Correo Ex. pat@example.com</mat-label>
+        <input type="email" matInput formControlName="emailFormControl">
+      </mat-form-field>
+    </p>
+
+    <table class="full-width" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Documento</mat-label>
+            <input matInput formControlName="documento">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Nombre completo</mat-label>
+            <input matInput formControlName="nombre">
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+
+    <p>
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>¿Cuál es el objeto de su petición, queja/reclamo o recurso?</mat-label>
+        <textarea matInput formControlName="peticion"></textarea>
+      </mat-form-field>
+    </p>
+    <button type="submit" [disabled]="!pqrFormGruop.valid" mat-raised-button color="primary">Enviar peticion</button>
+    <button  mat-raised-button color="primary" routerLink=''>atras</button>
+  </form>
+</div>

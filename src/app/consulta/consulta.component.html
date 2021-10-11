@@ -1,0 +1,79 @@
+<div class="parent">
+    <p></p>
+    <h1>Bienvenido Consulta de PQR</h1>
+
+    <form class="form" [formGroup]="pqrFormGruop" (ngSubmit)="onSubmit()">
+        <p>
+            <mat-form-field class="full-width" appearance="fill">
+                <mat-label>Numero PQR</mat-label>
+                <input type="number" matInput formControlName="idPqr">
+            </mat-form-field>
+        </p>
+        <button type="submit" [disabled]="!pqrFormGruop.valid" mat-raised-button color="primary">Consultar</button>
+    </form>
+    <div *ngIf="resultado">
+
+        <p>
+            <mat-card>
+                <mat-label>Tipo de PQR: </mat-label>
+                <mat-card>
+                    <mat-label>{{option}}</mat-label>
+                </mat-card>
+            </mat-card>
+        </p>
+
+        <p>
+            <mat-card>
+                <mat-label>correo: </mat-label>
+                <mat-card>
+                    <mat-label>{{correo}}</mat-label>
+                </mat-card>
+            </mat-card>
+        </p>
+
+        <table class="full-width" cellspacing="0">
+            <tr>
+                <td>
+                    <mat-card>
+                        <mat-label>Documento: </mat-label>
+                        <mat-card>
+                            <mat-label>{{Documento}}</mat-label>
+                        </mat-card>
+                    </mat-card>
+                </td>
+                <td>
+                    <mat-card>
+                        <mat-label>Nombre completo: </mat-label>
+                        <mat-card>
+                            <mat-label>{{Nombre}}</mat-label>
+                        </mat-card>
+                    </mat-card>
+                </td>
+            </tr>
+        </table>
+
+        <p>
+            <mat-card>
+                <mat-label>¿Cuál es el objeto de su petición, queja/reclamo o recurso? </mat-label>
+                <mat-card>
+                    <mat-label>{{peticion}}</mat-label>
+                </mat-card>
+            </mat-card>
+        </p>
+
+        <p>
+            <mat-card>
+                <mat-label>Respuesta: </mat-label>
+                <mat-card *ngIf="respuesta || reclamo">
+                    <mat-label>{{respuesta}}</mat-label>
+                    <button *ngIf="respuesta || reclamo" mat-raised-button color="primary" routerLink='/pqr/{{id}}'>reclamo</button>
+                </mat-card>
+                <mat-card *ngIf="!respuesta">
+                    <mat-label>No se tiene respuesta aun</mat-label>
+                </mat-card>
+            </mat-card>
+        </p>
+    </div>
+    <button mat-raised-button color="primary" routerLink=''>atras</button>
+
+</div>
